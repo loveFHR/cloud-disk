@@ -1,0 +1,86 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    username: ${disk.datasource.username}
+    password: ${disk.datasource.password}
+    driver-class-name: ${disk.datasource.driver-class-name}
+    url: jdbc:mysql://${disk.datasource.host}:${disk.datasource.port}/${disk.datasource.database}?serverTimezone=Asia/Shanghai
+    hikari:
+      #连接池名
+      pool-name: DateHikariCP
+      #最小空闲连接数
+      minimum-idle: 10
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 60
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
+  redis:
+    host: ${disk.redis.host}
+    port: ${disk.redis.port}
+    password: ${disk.redis.password}
+    database: ${disk.redis.database}
+    connect-timeout: 5000
+
+  #邮箱基本配置
+  mail:
+    #配置smtp服务主机地址
+    # qq邮箱为smtp.qq.com          端口号465或587
+    # sina    smtp.sina.cn
+    # aliyun  smtp.aliyun.com
+    # 163     smtp.163.com       端口号465或994
+    host: smtp.qq.com
+    #发送者邮箱
+    username: 1985754756@qq.com
+    #配置密码,注意不是真正的密码，而是刚刚申请到的授权码
+    password: jzdplllixfnqfahb
+    #端口号465或587
+    port: 587
+    #默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    #其他参数
+    properties:
+      mail:
+        #配置SSL 加密工厂
+        smtp:
+          ssl:
+            #本地测试，先放开ssl
+            enable: false
+            required: false
+          #开启debug模式，这样邮件发送过程的日志会在控制台打印出来，方便排查错误
+        debug: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+servlet:
+  multipart:
+    max-file-size: ${servlet.multipart.max-file-size}     #单个文件最大限制
+    max-request-size: ${servlet.multipart.max-request-size}  #多个文件最大限制
+minio:
+  endpoint: ${minio.endpoint}
+  accessKey: ${minio.accessKey}
+  secretKey: ${minio.secretKey}
+  bucket:
+    files: ${minio.bucket.files}
+    bigfiles: ${minio.bucket.bigfiles}
+    avatar: ${minio.bucket.avatar}
+disk:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    secret-key: hikari
+    # 设置jwt过期时间
+    ttl: 720000000 #200小时
+    # 设置前端传递过来的令牌名称
+    token-name: token

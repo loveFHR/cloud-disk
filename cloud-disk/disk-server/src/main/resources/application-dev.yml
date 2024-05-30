@@ -1,0 +1,28 @@
+disk:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 123.249.45.197
+    port: 3319
+    database: cloud_disk
+    username: root
+    password: "123456_000"
+  redis:
+    host: 123.249.45.197
+    port: 6379
+    password: "18583866845ppyy"
+    database: 10
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5000MB     #单个文件最大限制
+      max-request-size: 50000MB
+
+minio:
+  endpoint: http://123.249.45.197:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucket:
+    files: files
+    bigfiles: bigfiles
+    avatar: avatar

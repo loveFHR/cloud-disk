@@ -1,0 +1,7 @@
+//export const baseURL_dev:string="http://localhost:8080/api/"
+export const baseURL_dev:string="http://192.168.123.34:8080/api/"
+// export const baseURL_dev:string="http://2d5f004e.r3.cpolar.cn/api/"
+export const baseURL_pro:string="http://123.249.45.197:8080/api/"
+export const baseURL_test:string="http://123.249.45.197:8080/api/"
+export const baseURL_img:string="http://123.249.45.197:9000"
+export const baseURL_view:string="http://123.249.45.197:9000"
